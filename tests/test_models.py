@@ -49,3 +49,50 @@ def test_daily_mean_integers():
 
     # Need to use Pandas testing functions to compare arrays
     pdt.assert_frame_equal(daily_mean(test_input), test_result)
+
+
+def test_daily_min_integers():
+    """Test that mean function works for an array of positive integers."""
+    from catchment.models import daily_min
+
+    test_input = pd.DataFrame(
+                     data=[[1, 2],
+                           [3, 4],
+                           [5, 6]],
+                     index=[pd.to_datetime('2000-01-01 01:00'),
+                            pd.to_datetime('2000-01-01 02:00'),
+                            pd.to_datetime('2000-01-01 03:00')],
+                     columns=['A', 'B']
+    )
+    test_result = pd.DataFrame(
+                     data=[[1, 2]],
+                     index=[datetime.date(2000, 1, 1)],
+                     columns=['A', 'B']
+    )
+
+    # Need to use Pandas testing functions to compare arrays
+    pdt.assert_frame_equal(daily_min(test_input), test_result)
+
+
+def test_daily_max_integers():
+    """Test that mean function works for an array of positive integers."""
+    from catchment.models import daily_max
+
+    test_input = pd.DataFrame(
+        data=[[1, 2],
+              [3, 4],
+              [5, 6]],
+        index=[pd.to_datetime('2000-01-01 01:00'),
+               pd.to_datetime('2000-01-01 02:00'),
+               pd.to_datetime('2000-01-01 03:00')],
+        columns=['A', 'B']
+    )
+    test_result = pd.DataFrame(
+        data=[[5, 6]],
+        index=[datetime.date(2000, 1, 1)],
+        columns=['A', 'B']
+    )
+
+    # Need to use Pandas testing functions to compare arrays
+    pdt.assert_frame_equal(daily_max(test_input), test_result)
+
