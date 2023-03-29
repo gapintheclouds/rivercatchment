@@ -8,6 +8,7 @@ time across all sites.
 """
 
 import pandas as pd
+import numpy as np
 
 
 def read_variable_from_csv(filename):
@@ -70,3 +71,9 @@ def daily_min(data):
     :returns: Daily total
     """
     return data.groupby(data.index.date).min()
+
+
+def data_normalise(data):
+    """Normalise any given 2D data array"""
+    max_array = np.array(np.max(data, axis=0))
+    return data / max_array[np.newaxis, :]
